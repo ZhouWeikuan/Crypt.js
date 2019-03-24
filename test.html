@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>宽立游戏</title>
+    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
+
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+
+    <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- force webkit on 360 -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <!-- force edge on IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- force full screen on some browser -->
+    <meta name="full-screen" content="yes"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+
+    <!-- force screen orientation on some browser -->
+    <!-- <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-orientation" content="portrait"> -->
+
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+
+<style type="text/css">
+html {
+  -ms-touch-action: none;
+}
+
+body, canvas, div {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  cursor: default;
+  color: #888;
+  background-color: #333;
+
+  text-align: center;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#Cocos2dGameContainer {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  left: 0px;
+  top: 0px;
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+canvas {
+  background-color: rgba(0, 0, 0, 0);
+}
+</style>
+</head>
+<body>
+<script src="../libs/long.min.js"></script>
+<script src="../libs/bytebuffer.min.js"></script>
+<script src="Crypt.js"></script>
+<canvas id="gameCanvas" width="960" height="1536"></canvas>
+<script type="text/javascript">
+    var hex1 = "539708b1180d6572";
+    var hex2 = "5cd3c065272d874a";
+    var text = "Hello, World!";
+    var code = Crypt.hashkey(text);
+    console.log("hashkey for", text, "is", Crypt.hexencode(code));
+
+    code = Crypt.desencode(Crypt.hexdecode(hex1), text);
+    var orig = Crypt.desdecode(Crypt.hexdecode(hex1), code);
+    console.log("desencode for", text, "is", Crypt.hexencode(code), "restore to", orig);
+
+    code = Crypt.hmac64(Crypt.hexdecode(hex1), Crypt.hexdecode(hex2));
+    console.log("hmac64 for", hex1, ",", hex2, "is", Crypt.hexencode(code));
+
+    code = Crypt.hmac_hash(Crypt.hexdecode(hex1), text);
+    console.log("hmac_hash for", hex1, text, "is", Crypt.hexencode(code));
+
+    code = Crypt.xor_str(hex1, text);
+    console.log("xor_str for", hex1, ",", text, "is", Crypt.hexencode(code));
+
+    code = Crypt.dhexchange(Crypt.hexdecode(hex1));
+    console.log("dhexchange key for ", hex1, "is", Crypt.hexencode(code));
+
+    code = Crypt.dhsecret(Crypt.hexdecode(hex1), Crypt.hexdecode(hex2));
+    console.log("dhexchange key for ", hex1, ",", hex2, "is", Crypt.hexencode(code));
+
+
+</script>
+</body>
+</html>

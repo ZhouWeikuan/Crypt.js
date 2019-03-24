@@ -88,8 +88,8 @@ canvas {
 </style>
 </head>
 <body>
-<script src="../libs/long.min.js"></script>
-<script src="../libs/bytebuffer.min.js"></script>
+<script src="long.min.js"></script>
+<script src="bytebuffer.min.js"></script>
 <script src="Crypt.js"></script>
 <canvas id="gameCanvas" width="960" height="1536"></canvas>
 <script type="text/javascript">
@@ -116,7 +116,7 @@ canvas {
     console.log("dhexchange key for ", hex1, "is", Crypt.hexencode(code));
 
     code = Crypt.dhsecret(Crypt.hexdecode(hex1), Crypt.hexdecode(hex2));
-    console.log("dhexchange key for ", hex1, ",", hex2, "is", Crypt.hexencode(code));
+    console.log("dhsecret key for ", hex1, ",", hex2, "is", Crypt.hexencode(code));
 
 
 </script>

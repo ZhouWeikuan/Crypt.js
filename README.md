@@ -42,3 +42,7 @@ shows
     dhexchange key for  539708b1180d6572 is 6e53bf06eabd8aca test.html:116:5
     dhsecret key for  539708b1180d6572 , 5cd3c065272d874a is 0a3ff75741c931fa
 """
+
+# websocket.lua
+ 位置是skynet的lualib/http/websocket.lua
+

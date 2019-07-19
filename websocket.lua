@@ -268,13 +268,15 @@ function ws:recv()
         if not success then
             return false, message
         end
+
         if message then
             data = data .. message
-        end
-        if final then
-            break
         else
-            data = data .. message
+            data = ""
+        end
+
+        if final and message then
+            break
         end
     end
     if not self.client_terminated then
